@@ -94,6 +94,13 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("products not found in this category."));
     }
 
+     @GetMapping("/filterByPrice/{minPrice}/{maxPrice}")
+    public ArrayList<Product> filterProductsByPrice(
+            @PathVariable double minPrice,
+            @PathVariable double maxPrice) {
+        return productService.filterProductsByPriceRange(minPrice, maxPrice);
+    }
+
 
 //    @GetMapping("/cheap")
 //    public ResponseEntity getCheapProducts() {
