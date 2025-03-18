@@ -88,18 +88,18 @@ public class UserService {
 
 
 
-    // خصم لمن تعدت فاتورته 200 دولار
-    public String applyDiscount(String userId, double totalAmount,String productID) {
+   //Discount for user wehn use the copon
+    public String applyDiscount(String userId, String copon,String productID) {
         for (Product product : productService.getAllProduct()) {
             if (product.getId().equals(productID))
                 for (User user : users) {
                     if (user.getId().equals(userId)) {
-                        if (totalAmount > 200) {
-                            totalAmount *= 0.8;
-                            double newprice = product.getPrice() - totalAmount;
-                            return "Discount applied! New total: $" + newprice;
+                        if (copon.equalsIgnoreCase("SS1")) {
+                            double discount = product.getPrice() * 0.20;
+                            double newPrice = product.getPrice() - discount;
+                            return "Discount applied! New total: $" + newPrice;
                         }
-                        return "No discount applied. Total remains: $" + totalAmount;
+                        return "No discount applied. Total remains: $" +product.getPrice();
                     }
                 }
             return "User not found";
@@ -108,22 +108,40 @@ public class UserService {
 
     }
 
-
-    //  هدية لمن اشترى أكثر من 3 مرات
-    public String checkGiftEligibility(String userId, int purchaseCount,String productID) {
-        for (Product product : productService.getAllProduct()) {
-            if (product.getId().equals(productID))
-                for (User user : users) {
-                    if (user.getId().equals(userId)) {
-                        if (purchaseCount > 3) {
-                            return "Congratulations! You are eligible for a free gift!";
-                        }
-                        return "No gift available. Purchase more to unlock rewards!";
+    public ArrayList<Product> getAvailableProducts(String userId) {
+        
+        for (User user : users) {
+            if (user.getId().equals(userId)) {
+                ArrayList<Product> availableProducts = new ArrayList<>();
+                
+                for (Product product : productService.getAllProduct()) {
+                    
+                    if (user.getBalance() >= product.getPrice()) {
+                        availableProducts.add(product);
                     }
                 }
-            return "User not found";
+                 
+                return availableProducts;
+            }
         }
-        return "product not found";
+        return new ArrayList<>();   
+    }
+
+
+
+    public String addBalance(String userId, double amount) {
+        if (amount <= 0) {
+            return "The amount must be greater than zero";
+        }
+
+        for (User user : users) {
+            if (user.getId().equals(userId)) {
+                user.setBalance(user.getBalance() + amount);
+                return "Successfully added " + amount + " SAR to your balance. Your current balance: " + user.getBalance();
+            }
+        }
+
+        return "User not found";
     }
 
 
