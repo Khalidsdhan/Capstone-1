@@ -77,9 +77,9 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiResponse("User not found"));
     }
 
-    @GetMapping("/discount/{userId}/{totalAmount}/{productID}")
-    public ResponseEntity applyDiscount(@PathVariable String userId, @PathVariable double totalAmount,@PathVariable String productID) {
-        String message = userService.applyDiscount(userId, totalAmount,productID);
+    @GetMapping("/discount/{userId}/{copon}/{productID}")
+    public ResponseEntity applyDiscount(@PathVariable String userId, @PathVariable String copon,@PathVariable String productID) {
+        String message = userService.applyDiscount(userId, copon,productID);
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(message));
     }
 
@@ -87,5 +87,16 @@ public class UserController {
     public ResponseEntity checkGiftEligibility(@PathVariable String userId ,@PathVariable int purchaseCount,@PathVariable String productID) {
         String message = userService.checkGiftEligibility(userId,purchaseCount,productID);
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(message));
+    }
+
+        @GetMapping("/{userId}/available-products")
+    public ArrayList<Product> getAvailableProducts(@PathVariable String userId) {
+        return userService.getAvailableProducts(userId);
+    }
+
+
+     @PostMapping("/{userId}/add-balance")
+    public String addBalance(@PathVariable String userId, @RequestParam double amount) {
+        return userService.addBalance(userId, amount);
     }
 }
