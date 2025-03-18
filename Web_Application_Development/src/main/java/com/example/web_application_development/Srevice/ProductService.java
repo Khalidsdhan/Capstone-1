@@ -110,6 +110,16 @@ public class ProductService {
     }
 
 
+    public ArrayList<Product> filterProductsByPriceRange(double minPrice, double maxPrice) {
+        ArrayList<Product> filteredProducts = new ArrayList<>();
+        for (Product product : products) {
+            if (product.getPrice() >= minPrice && product.getPrice() <= maxPrice) {
+                filteredProducts.add(product);
+            }
+        }
+        return filteredProducts;
+    }
+
 
 
 //    //المنتجات الارخص
