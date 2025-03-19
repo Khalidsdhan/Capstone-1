@@ -88,7 +88,7 @@ public class UserService {
 
 
 
-   //Discount for user wehn use the copon
+   //Frist extra point Discount for user wehn use the copon
     public String applyDiscount(String userId, String copon,String productID) {
         for (Product product : productService.getAllProduct()) {
             if (product.getId().equals(productID))
@@ -128,7 +128,7 @@ public class UserService {
     }
 
 
-
+//Second extra point add Balance
     public String addBalance(String userId, double amount) {
         if (amount <= 0) {
             return "The amount must be greater than zero";
