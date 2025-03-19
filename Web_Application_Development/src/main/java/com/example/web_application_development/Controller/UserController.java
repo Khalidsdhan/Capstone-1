@@ -62,6 +62,7 @@ public class UserController {
     }
 
 
+    @PostMapping("/buyProduct/{productID}/{userID}/{merchantID}")
     public ResponseEntity buyProduct(@PathVariable String productID, String userID, String merchantID) {
 
         String message = userService.buyProduct(productID, userID, merchantID);
