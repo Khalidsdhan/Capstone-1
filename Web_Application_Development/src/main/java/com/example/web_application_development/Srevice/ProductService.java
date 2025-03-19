@@ -70,7 +70,7 @@ public class ProductService {
     }
 
 
-    // تحقق من توفر المنتج
+    //Fourth extra point  is Product Available
     public boolean isProductAvailable(String productId, String merchantStockID) {
         for (MerchantStock merchantStock : merchantStockService.getAllMerchantStock()) {
             if (merchantStock.getId().equals(merchantStockID)) {
@@ -88,29 +88,8 @@ public class ProductService {
     }
 
 
-    public ArrayList<Product> searchProduct(String keyword) {
-        ArrayList<Product> searchResults = new ArrayList<>();
-        for (Product product : products) {
-            if (product.getName().toLowerCase().contains(keyword.toLowerCase())) {
-                searchResults.add(product);
-            }
-        }
-        return searchResults;
-    }
-
-
-    public ArrayList<Product> getProductsByCategory(String categoryId) {
-        ArrayList<Product> categoryProducts = new ArrayList<>();
-        for (Product product : products) {
-            if (product.getCategoryID().equals(categoryId)) {
-                categoryProducts.add(product);
-            }
-        }
-        return categoryProducts;
-    }
-
-
-    public ArrayList<Product> filterProductsByPriceRange(double minPrice, double maxPrice) {
+    //Fifth extra point filter Products By Price Range
+      public ArrayList<Product> filterProductsByPriceRange(double minPrice, double maxPrice) {
         ArrayList<Product> filteredProducts = new ArrayList<>();
         for (Product product : products) {
             if (product.getPrice() >= minPrice && product.getPrice() <= maxPrice) {
@@ -122,27 +101,31 @@ public class ProductService {
 
 
 
-//    //المنتجات الارخص
-//    public ArrayList<Product> getCheapProducts() {
-//        ArrayList<Product> cheapProducts = new ArrayList<>();
-//        for (Product product : products) {
-//            if (product.getPrice() < 50) {
-//                cheapProducts.add(product);
-//            }
-//        }
-//        return cheapProducts;
-//    }
-//
-////المنتجات الاغلى
-//    public ArrayList<Product> getExpensiveProducts() {
-//        ArrayList<Product> expensiveProducts = new ArrayList<>();
-//        for (Product product : products) {
-//            if (product.getPrice() > 200) {
-//                expensiveProducts.add(product);
-//            }
-//        }
-//        return expensiveProducts;
-//    }
+
+    //One extra point on top of the five extra points
+    public ArrayList<Product> searchProduct(String keyword) {
+        ArrayList<Product> searchResults = new ArrayList<>();
+        for (Product product : products) {
+            if (product.getName().toLowerCase().contains(keyword.toLowerCase())) {
+                searchResults.add(product);
+            }
+        }
+        return searchResults;
+    }
+
+//One extra point on top of the five extra points
+    public ArrayList<Product> getProductsByCategory(String categoryId) {
+        ArrayList<Product> categoryProducts = new ArrayList<>();
+        for (Product product : products) {
+            if (product.getCategoryID().equals(categoryId)) {
+                categoryProducts.add(product);
+            }
+        }
+        return categoryProducts;
+    }
+
+
+  
 
 
 
