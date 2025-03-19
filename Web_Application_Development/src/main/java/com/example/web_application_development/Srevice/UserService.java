@@ -108,6 +108,7 @@ public class UserService {
 
     }
 
+    //Second extra point get Available Products 
     public ArrayList<Product> getAvailableProducts(String userId) {
         
         for (User user : users) {
@@ -128,7 +129,7 @@ public class UserService {
     }
 
 
-//Second extra point add Balance
+//Third extra point extra point add Balance
     public String addBalance(String userId, double amount) {
         if (amount <= 0) {
             return "The amount must be greater than zero";
