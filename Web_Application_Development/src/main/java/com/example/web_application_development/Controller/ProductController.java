@@ -102,16 +102,5 @@ public class ProductController {
     }
 
 
-//    @GetMapping("/cheap")
-//    public ResponseEntity getCheapProducts() {
-//        ArrayList<Product> cheapProducts = productService.getCheapProducts();
-//        return ResponseEntity.status(200).body(cheapProducts);
-//    }
-//
-//    @GetMapping("/expensive")
-//    public ResponseEntity getExpensiveProducts() {
-//        ArrayList<Product> expensiveProducts = productService.getExpensiveProducts();
-//        return ResponseEntity.status(200).body(expensiveProducts);
-//    }
 
 }
